@@ -45,7 +45,7 @@ sync_with_github:
   before_script:
     # Set up Git credentials for GitHub and GitLab if necessary
     - git config --global user.email "davidsonmm9@gmail.com"
-    - git config --global user.name "AbimbolaDavidson"
+    
     
 
 test-job:
