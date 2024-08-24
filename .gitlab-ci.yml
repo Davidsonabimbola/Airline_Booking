@@ -1,55 +1,25 @@
 
-# stages: 
-#     # - build
-#     - test
+stages: 
+    # - build
+    - test
     
-
-# test-job:
-#   image: mcr.microsoft.com/playwright
-#   stage: test
-#   script:
-#       - npm ci
-#       - npx playwright install --with-deps
-#       - npx playwright test
-#   artifacts:
-#      when: always
-#      paths: 
-#        - playwright-report/**
-#       # - echo: "Running tests."
-#       # - sleep  60
-#       # - echo: "Code coverage is 90%."
-
-      
-
-
-stages:
-  - sync
-  - test
-
-sync_with_github:
-  stage: sync
-  script:
-    # Add the GitHub remote
-    - git remote add github https://github.com/Davidsonabimbola/Airline_Booking.git
-    # Fetch the latest changes from GitHub
-    - git fetch github
-    # Push the fetched changes to the GitLab repository
-    - git push origin main
-  only:
-    - main  # Ensure this job runs only on the main branch
 
 test-job:
   image: mcr.microsoft.com/playwright
   stage: test
   script:
-    - npm ci
-    - npx playwright install --with-deps
-    - npx playwright test
+      - npm ci
+      - npx playwright install --with-deps
+      - npx playwright test
   artifacts:
-    when: always
-    paths: 
-      - playwright-report/**
-  only:
-    - main  # Ensure this job runs only on the main branch
+     when: always
+     paths: 
+       - playwright-report/**
+      # - echo: "Running tests."
+      # - sleep  60
+      # - echo: "Code coverage is 90%."
+
+      
+
 
 
