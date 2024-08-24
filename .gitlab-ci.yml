@@ -29,8 +29,6 @@ stages:
 sync_with_github:
   stage: sync
   script:
-    # Check if the remote already exists to avoid duplication
-    - if git remote | grep github; then git remote remove github; fi
     # Add the GitHub remote
     - git remote add github https://github.com/Davidsonabimbola/Airline_Booking.git
     # Fetch the latest changes from GitHub
@@ -39,12 +37,6 @@ sync_with_github:
     - git push origin main
   only:
     - main  # Ensure this job runs only on the main branch
-  before_script:
-    # Set up Git credentials for GitHub and GitLab if necessary
-    - git config --global user.email "davidsonmm9@gmail.com"
-    - git config --global user.name "Davidson Abimbola"
-    # This is optional but ensures you don't face authentication issues:
-    - git config --global credential.helper store
 
 test-job:
   image: mcr.microsoft.com/playwright
