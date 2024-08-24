@@ -21,9 +21,9 @@ build-job:
     - when: always
     - path: 
       - playwright-report/index.html
-      - echo: "Running tests."
+      # - echo: "Running tests."
       - sleep  60
-      - echo: "Code coverage is 90%."
+      # - echo: "Code coverage is 90%."
 
 
 deploy-job:
