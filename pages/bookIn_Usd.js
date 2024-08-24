@@ -5,7 +5,7 @@ const buyTicket = (page)=>({
   expect(await page.locator('[id="travelOptions"]')).toBeTruthy()
     },
 
-    async selectDeparture_City(firstTwo_Departure_letters, Departure_city_With_Code,firstTwo_Arrival_letters, Arrival_city_With_Code){
+    async select_Departure_and_Arrival(firstTwo_Departure_letters, Departure_city_With_Code,firstTwo_Arrival_letters, Arrival_city_With_Code){
         const selectTravel =  page.locator('[id="ctl00_mainContent_rbtnl_Trip"]')
         const roundTrip = selectTravel.locator('[id="ctl00_mainContent_rbtnl_Trip_1"]')
         await roundTrip.check()

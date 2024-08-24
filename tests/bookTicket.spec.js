@@ -13,7 +13,7 @@ test(`booking with currency: ${currency}`, {tag: '@smoke'}, async ({page})=>{
  console.log(currentDate)
  const Book_in_USD = bookingIn_Usd(page)
   await Book_in_USD.gotoLoginPage()
-  await Book_in_USD.selectDeparture_City(departure_first_2_Letters, departure_City, arrival_first_2_Letters, arrival_City )
+  await Book_in_USD.select_Departure_and_Arrival(departure_first_2_Letters, departure_City, arrival_first_2_Letters, arrival_City )
   await Book_in_USD.choose_Departure_Date(currentDate)
   await Book_in_USD.choose_Arrival_Date(currentDate)
   await Book_in_USD.numberOf_passengers()
