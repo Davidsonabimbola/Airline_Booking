@@ -1,34 +1,33 @@
 
 stages: 
-    - build
+    # - build
     - test
-    - deploy
-build-job:
-  stage: build
-  script: 
-  - echo: "Compiling ready"
-  -echo: "Compiling complete"
+    # - deploy
+# build-job:
+#   stage: build
+#   script: 
+#   - echo: "Compiling ready"
+#   -echo: "Compiling complete"
 
-  unit-test-job:
-    image: mcr.microsoft.com/playwright
-    stage: test
-    
-    script:
+test-job:
+  image: mcr.microsoft.com/playwright
+  stage: test
+  script:
       - npm ci
       - npx playwright install --with-deps
       - npx playwright test
-    artefacts:
-    - when: always
-    - path: 
-      - playwright-report/index.html
+  artifacts:
+     when: always
+     paths: 
+       - playwright-report/**
       # - echo: "Running tests."
-      - sleep  60
+      # - sleep  60
       # - echo: "Code coverage is 90%."
 
 
-deploy-job:
-  stage: deploy
-  script:
-    - echo: "Deploying application"
-    - echo: "Application succesfully deployed"
+# deploy-job:
+#   stage: deploy
+#   script:
+#     - echo: "Deploying application"
+#     - echo: "Application succesfully deployed"
 
