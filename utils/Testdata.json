@@ -1,0 +1,25 @@
+[
+{
+    "departure_first_2_Letters": "Gu",
+    "departure_City": " Guwahati (GAU)",
+    "arrival_first_2_Letters": "De",
+    "arrival_City": " Delhi (DEL)",
+    "currency": "USD"
+},
+
+{
+    "departure_first_2_Letters": "Gu",
+    "departure_City": " Guwahati (GAU)",
+    "arrival_first_2_Letters": "De",
+    "arrival_City": " Delhi (DEL)",
+    "currency": "AED"
+},
+
+{
+    "departure_first_2_Letters": "Gu",
+    "departure_City": " Guwahati (GAU)",
+    "arrival_first_2_Letters": "De",
+    "arrival_City": " Delhi (DEL)",
+    "currency": "INR"
+}
+]

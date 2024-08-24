@@ -1,9 +1,77 @@
 const { test, expect } = require('@playwright/test');
-test('book flight', async ({ page }) => {
+const bookingIn_Usd = require('../pages/bookIn_Usd')
+const dataset = require('../utils/Testdata.json')
+
+
+
+dataset.forEach(({departure_first_2_Letters, departure_City, arrival_first_2_Letters, arrival_City, currency})=>{
+test.setTimeout(150000)
+test(`booking with currency: ${currency}`, {tag: '@smoke'}, async ({page})=>{
+  const today = new Date();
+  console.log(today)
+ const currentDate = today.getDate(); // Day of the month (1-31)
+ console.log(currentDate)
+ const Book_in_USD = bookingIn_Usd(page)
+  await Book_in_USD.gotoLoginPage()
+  await Book_in_USD.selectDeparture_City(departure_first_2_Letters, departure_City, arrival_first_2_Letters, arrival_City )
+  await Book_in_USD.choose_Departure_Date(currentDate)
+  await Book_in_USD.choose_Arrival_Date(currentDate)
+  await Book_in_USD.numberOf_passengers()
+  await Book_in_USD.currencyCode(currency)
+  await Book_in_USD.submitSearch()
+})
+
+
+})
+
+
+//  test('book flight', async ({ page }) => {
+//   test.setTimeout(150000);
+//   const today = new Date();
+//   console.log(today)
+//  const currentDate = today.getDate(); // Day of the month (1-31)
+//  console.log(currentDate)
+//  const currencycode = 'USD'
+
+//   const Book_in_USD = bookingIn_Usd(page)
+//   await Book_in_USD.gotoLoginPage()
+//   await Book_in_USD.selectDeparture_City('Gu',' Guwahati (GAU)', 'De', ' Delhi (DEL)' )
+//   await Book_in_USD.choose_Departure_Date(currentDate)
+//   await Book_in_USD.choose_Arrival_Date(currentDate)
+//   await Book_in_USD.numberOf_passengers()
+//   await Book_in_USD.currencyCode(currencycode)
+//   await Book_in_USD.submitSearch()
+
+// });
+
+
+// test('book flight', async ({ page }) => {
+//   test.setTimeout(150000);
+//   const today = new Date();
+//   console.log(today)
+//  const currentDate = today.getDate(); // Day of the month (1-31)
+//  console.log(currentDate)
+//  const currencycode = 'USD'
+
+//   const Book_in_USD = bookingIn_Usd(page)
+//   await Book_in_USD.gotoLoginPage()
+//   await Book_in_USD.selectDeparture_City('Gu',' Guwahati (GAU)', 'De', ' Delhi (DEL)' )
+//   await Book_in_USD.choose_Departure_Date(currentDate)
+//   await Book_in_USD.choose_Arrival_Date(currentDate)
+//   await Book_in_USD.numberOf_passengers()
+//   await Book_in_USD.currencyCode(currencycode)
+//   await Book_in_USD.submitSearch()
+
+// });
+
+//
+/*test('book flight', async ({ page }) => {
 
   test.setTimeout(150000);
-  await page.goto('https://rahulshettyacademy.com/dropdownsPractise/#');
-  expect(await page.locator('[id="travelOptions"]')).toBeTruthy()
+  const Book_in_USD = bookingIn_Usd(page)
+  await Book_in_USD.gotoLoginPage()
+  // await page.goto('https://rahulshettyacademy.com/dropdownsPractise/#');
+  // expect(await page.locator('[id="travelOptions"]')).toBeTruthy()
 
   const currencycode = 'USD'
 
@@ -78,6 +146,8 @@ await page.locator('[id="ctl00_mainContent_DropDownListCurrency"]').selectOption
 await page.locator('[id="ctl00_mainContent_btn_FindFlights"]').click()
 
 });
+*/
+
 
 
 
