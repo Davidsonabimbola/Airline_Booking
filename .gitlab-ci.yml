@@ -5,7 +5,8 @@ stages:
     
 
 test-job:
-  image: mcr.microsoft.com/playwright
+  # image: mcr.microsoft.com/playwright
+  image: docker pull mcr.microsoft.com/playwright:v1.46.1-jammy
   stage: test
   script:
       - npm ci
