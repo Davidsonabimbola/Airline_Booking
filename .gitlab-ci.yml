@@ -19,7 +19,7 @@ test-job:
       #  - echo: "Running tests."
       # - sleep  60
       #  - echo: "Code coverage is 100%."
--echo: "Code coverage is 100%."
+
       
 
 
