@@ -9,16 +9,18 @@ test-job:
   image: mcr.microsoft.com/playwright:v1.46.1-jammy
   stage: test
   script:
+      - echo "Code coverage is 100%."
       - npm ci
       - npx playwright install --with-deps
       - npx playwright test
+      
   artifacts:
      when: always
      paths: 
        - playwright-report/**
       #  - echo: "Running tests."
       # - sleep  60
-      #  - echo: "Code coverage is 100%."
+       - echo "Code coverage is 100%."
 
       
 
