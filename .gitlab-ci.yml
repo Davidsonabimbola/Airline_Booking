@@ -1,12 +1,12 @@
 
 stages: 
     # - build
-    - build
+    - test
     
 
 test-job:
   image: mcr.microsoft.com/playwright
-  stage: build
+  stage: test
   script:
       - npm ci
       - npx playwright install --with-deps
