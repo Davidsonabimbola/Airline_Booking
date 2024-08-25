@@ -18,9 +18,7 @@ test-job:
      when: always
      paths: 
        - playwright-report/**
-      #  - echo: "Running tests."
-      # - sleep  60
-       - echo "Code coverage is 100%."
+      
 
       
 
