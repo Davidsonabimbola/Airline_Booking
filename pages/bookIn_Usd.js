@@ -27,34 +27,36 @@ await pick.filter({hasText: Arrival_city_With_Code}).dblclick()
     },
 
     async choose_Departure_Date(currentDate){
-        const firstCalendar = await page.locator('[class="ui-datepicker-group ui-datepicker-group-first"]')
-const selectCalendar = await firstCalendar.locator('[class="ui-datepicker-calendar"]')
-const bodyCalendar = await selectCalendar.locator('tbody')
-const calendarRow = await bodyCalendar.locator('tr').nth(0).filter({hasText: currentDate})
-const calenarDate = await calendarRow.locator('td').getByText(currentDate)
-await calenarDate.click()
-//getByRole('link', { name: '2', exact: true }).first()
+//         const firstCalendar = await page.locator('[class="ui-datepicker-group ui-datepicker-group-first"]')
+// const selectCalendar = await firstCalendar.locator('[class="ui-datepicker-calendar"]')
+// const bodyCalendar = await selectCalendar.locator('tbody')
+// const calendarRow = await bodyCalendar.locator('tr').filter({hasText: currentDate})
+// const calenarDate = await calendarRow.locator('td').getByText(currentDate).first()
+// await calenarDate.locator('[class="ui-state-default ui-state-highlight"]').click()
+await page.getByRole('link', { name: currentDate, exact: true }).first().click()
     },
 
-    async choose_Arrival_Date(currentDate){
+    async choose_Arrival_Date(){
+        // await page.locator('[id="ctl00_mainContent_view_date2"]').click()
+        // const secondCalendar = page.locator('[class="ui-datepicker-group ui-datepicker-group-last"]')
+        // const second_selectCalendar = secondCalendar.locator('[class="ui-datepicker-calendar"]')
+        // const second_bodyCalendar = second_selectCalendar.locator('tbody')
+        // if (currentDate < 31){
+        //   const arrivalDate = (15 - currentDate) + 15
+        //   console.log(arrivalDate)
+        //   const second_calendarRow = second_bodyCalendar.locator('tr').nth(0).filter({hasText: `${arrivalDate}`})
+        // const second_calenarDate = second_calendarRow.locator('td').locator('a').getByText(`${arrivalDate}`)
+        // await second_calenarDate.click({force:true})
+        // }
+        // else{
+        //   const change_arrivalDate = 15
+        //   console.log(change_arrivalDate)
+        //   const second_calendarRow = second_bodyCalendar.locator('tr').filter({hasText: `${change_arrivalDate}`})
+        // const second_calenarDate = second_calendarRow.locator('td').getByText(`${change_arrivalDate}`)
+        // await second_calenarDate.locator('[class="ui-state-default ui-state-highlight"]').click()
+        // }
         await page.locator('[id="ctl00_mainContent_view_date2"]').click()
-        const secondCalendar = page.locator('[class="ui-datepicker-group ui-datepicker-group-last"]')
-        const second_selectCalendar = secondCalendar.locator('[class="ui-datepicker-calendar"]')
-        const second_bodyCalendar = second_selectCalendar.locator('tbody')
-        if (currentDate < 31){
-          const arrivalDate = (15 - currentDate) + 15
-          console.log(arrivalDate)
-          const second_calendarRow = second_bodyCalendar.locator('tr').nth(0).filter({hasText: `${arrivalDate}`})
-        const second_calenarDate = second_calendarRow.locator('td').getByText(`${arrivalDate}`)
-        await second_calenarDate.click()
-        }
-        else{
-          const change_arrivalDate = 15
-          console.log(change_arrivalDate)
-          const second_calendarRow = second_bodyCalendar.locator('tr').filter({hasText: `${change_arrivalDate}`})
-        const second_calenarDate = second_calendarRow.locator('td').getByText(`${change_arrivalDate}`)
-        await second_calenarDate.click({force:true})
-        }
+  await page.getByRole('link', { name: '16',exact: true }).nth(1).click()
     },
 
     async numberOf_passengers(){

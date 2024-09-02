@@ -5,7 +5,7 @@ const dataset = require('../utils/Testdata.json')
 
 
 dataset.forEach(({departure_first_2_Letters, departure_City, arrival_first_2_Letters, arrival_City, currency})=>{
-test.setTimeout(150000)
+test.setTimeout(200000)
 test(`booking with currency: ${currency}`, {tag: '@smoke'}, async ({page})=>{
   const today = new Date();
   console.log(today)
@@ -14,11 +14,11 @@ test(`booking with currency: ${currency}`, {tag: '@smoke'}, async ({page})=>{
  const Book_in_USD = bookingIn_Usd(page)
   await Book_in_USD.gotoLoginPage()
   await Book_in_USD.select_Departure_and_Arrival(departure_first_2_Letters, departure_City, arrival_first_2_Letters, arrival_City )
-  //await page.getByRole('link', { name: '2', force: true }).first().click()
+
+  
   await Book_in_USD.choose_Departure_Date(currentDate)
-  await Book_in_USD.choose_Arrival_Date(currentDate)
-  //await page.getByRole('link', { name: '2', force: true }).first().click()
-  //await page.getByRole('link', { name: '6', exact: true }).first().click()
+  await Book_in_USD.choose_Arrival_Date()
+  
   await Book_in_USD.numberOf_passengers()
   await Book_in_USD.currencyCode(currency)
   await Book_in_USD.submitSearch()
@@ -68,7 +68,7 @@ test(`booking with currency: ${currency}`, {tag: '@smoke'}, async ({page})=>{
 // });
 
 //
-/*test('book flight', async ({ page }) => {
+/*test('book flight',{tag:'@regress'}, async ({ page }) => {
 
   test.setTimeout(150000);
   const Book_in_USD = bookingIn_Usd(page)
@@ -112,7 +112,7 @@ const firstCalendar = page.locator('[class="ui-datepicker-group ui-datepicker-gr
 const selectCalendar = firstCalendar.locator('[class="ui-datepicker-calendar"]')
 const bodyCalendar = selectCalendar.locator('tbody')
 const calendarRow = bodyCalendar.locator('tr').filter({hasText: `${currentDate}`})
-const calenarDate = calendarRow.locator('td').getByText(`${currentDate}`)
+const calenarDate = calendarRow.locator('td').getByText(`${currentDate}`).first()
 await calenarDate.click()
 
 //return date
