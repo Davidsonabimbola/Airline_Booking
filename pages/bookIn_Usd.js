@@ -27,12 +27,13 @@ await pick.filter({hasText: Arrival_city_With_Code}).dblclick()
     },
 
     async choose_Departure_Date(currentDate){
-        const firstCalendar = page.locator('[class="ui-datepicker-group ui-datepicker-group-first"]')
-const selectCalendar = firstCalendar.locator('[class="ui-datepicker-calendar"]')
-const bodyCalendar = selectCalendar.locator('tbody')
-const calendarRow = bodyCalendar.locator('tr').filter({hasText: currentDate})
-const calenarDate = calendarRow.locator('td').getByText(currentDate)
+        const firstCalendar = await page.locator('[class="ui-datepicker-group ui-datepicker-group-first"]')
+const selectCalendar = await firstCalendar.locator('[class="ui-datepicker-calendar"]')
+const bodyCalendar = await selectCalendar.locator('tbody')
+const calendarRow = await bodyCalendar.locator('tr').nth(0).filter({hasText: currentDate})
+const calenarDate = await calendarRow.locator('td').getByText(currentDate)
 await calenarDate.click()
+//getByRole('link', { name: '2', exact: true }).first()
     },
 
     async choose_Arrival_Date(currentDate){
@@ -41,9 +42,9 @@ await calenarDate.click()
         const second_selectCalendar = secondCalendar.locator('[class="ui-datepicker-calendar"]')
         const second_bodyCalendar = second_selectCalendar.locator('tbody')
         if (currentDate < 31){
-          const arrivalDate = (30 - currentDate) + 15
+          const arrivalDate = (15 - currentDate) + 15
           console.log(arrivalDate)
-          const second_calendarRow = second_bodyCalendar.locator('tr').filter({hasText: `${arrivalDate}`})
+          const second_calendarRow = second_bodyCalendar.locator('tr').nth(0).filter({hasText: `${arrivalDate}`})
         const second_calenarDate = second_calendarRow.locator('td').getByText(`${arrivalDate}`)
         await second_calenarDate.click()
         }
@@ -52,7 +53,7 @@ await calenarDate.click()
           console.log(change_arrivalDate)
           const second_calendarRow = second_bodyCalendar.locator('tr').filter({hasText: `${change_arrivalDate}`})
         const second_calenarDate = second_calendarRow.locator('td').getByText(`${change_arrivalDate}`)
-        await second_calenarDate.click()
+        await second_calenarDate.click({force:true})
         }
     },
 
